@@ -1,7 +1,6 @@
 package org.launchcode.javawebdevtechjobsmvc.controllers;
 
-import org.launchcode.javawebdevtechjobsmvc.models.Job;
-import org.launchcode.javawebdevtechjobsmvc.models.JobData;
+import org.launchcode.javawebdevtechjobsmvc.models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,7 @@ import static org.launchcode.javawebdevtechjobsmvc.controllers.ListController.co
 @Controller
 @RequestMapping("search")
 public class SearchController {
+    private static ArrayList<Job> searchResults = new ArrayList<>();
 
     @RequestMapping(value = "")
     public String search(Model model) {
@@ -23,6 +23,17 @@ public class SearchController {
         return "search";
     }
 
-    // TODO #3 - Create a handler to process a search request and render the updated search view.
+    @PostMapping("results")
+    public String processSearchResults(Model model, @RequestParam String searchType,
+                                       @RequestParam String searchTerm) {
+        ArrayList<Job> jobs = new ArrayList<>();
+        if (searchType.equalsIgnoreCase("all") || searchTerm.equalsIgnoreCase("all")) {
+            searchResults = JobData.findAll();
+        } else {
+            searchResults = JobData.findByColumnAndValue(searchType , searchTerm);
+        }
 
+        return "redirect:";
+
+    }
 }
