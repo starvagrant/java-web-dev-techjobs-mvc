@@ -20,8 +20,15 @@ public class SearchController {
     @RequestMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("jobs", searchResults);
+
         return "search";
+    }
+
+    @GetMapping("results")
+    public String displaySearchResults(Model model) {
+        model.addAttribute("columns", columnChoices);
+        model.addAttribute("jobs", searchResults);
+        return "results";
     }
 
     @PostMapping("results")
@@ -34,7 +41,7 @@ public class SearchController {
             searchResults = JobData.findByColumnAndValue(searchType , searchTerm);
         }
 
-        return "redirect:";
+        return "redirect:results";
 
     }
 }
