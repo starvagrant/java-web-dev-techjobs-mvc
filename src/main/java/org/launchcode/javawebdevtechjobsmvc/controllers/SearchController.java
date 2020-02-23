@@ -16,6 +16,7 @@ import static org.launchcode.javawebdevtechjobsmvc.controllers.ListController.co
 @RequestMapping("search")
 public class SearchController {
     private static ArrayList<Job> searchResults = new ArrayList<>();
+    private static String defaultChoice = "all";
 
     @RequestMapping(value = "")
     public String search(Model model) {
@@ -28,6 +29,7 @@ public class SearchController {
     public String displaySearchResults(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("jobs", searchResults);
+        model.addAttribute("checked", defaultChoice);
         return "results";
     }
 
@@ -42,6 +44,7 @@ public class SearchController {
         } else {
             searchResults = JobData.findByColumnAndValue(searchType , searchTerm);
         }
+        defaultChoice = searchType;
 
         return "redirect:results";
 
