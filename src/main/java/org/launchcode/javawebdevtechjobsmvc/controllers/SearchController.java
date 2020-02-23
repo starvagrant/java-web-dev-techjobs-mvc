@@ -35,8 +35,10 @@ public class SearchController {
     public String processSearchResults(Model model, @RequestParam String searchType,
                                        @RequestParam String searchTerm) {
         ArrayList<Job> jobs = new ArrayList<>();
-        if (searchType.equalsIgnoreCase("all") || searchTerm.equalsIgnoreCase("all")) {
+        if (searchTerm.equalsIgnoreCase("all")){
             searchResults = JobData.findAll();
+        } else if (searchType.equalsIgnoreCase("all")){
+            searchResults = JobData.findByValue(searchTerm);
         } else {
             searchResults = JobData.findByColumnAndValue(searchType , searchTerm);
         }
