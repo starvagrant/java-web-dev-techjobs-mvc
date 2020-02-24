@@ -12,6 +12,11 @@ th {
 
 td {
     vertical-align: top;
+    font-weight: bold;
+}
+
+td span {
+    font-weight: normal;
 }
 
 tr:nth-child(odd) {

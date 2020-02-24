@@ -37,11 +37,11 @@
 
     <th:block th:each="job : ${jobs}">
     <table >
-        <tr><td th:text="${job.id}"></td></tr>
-        <tr><td th:text="${job.name}"></td></tr>
-        <tr><td th:text="${job.employer}"></td></tr>
-        <tr><td th:text="${job.positionType}"></td></tr>
-        <tr><td th:text="${job.coreCompetency}"></td></tr>
+        <tr><td>Id: <span th:text="${job.id}"></span></td></tr>
+        <tr><td>Name: <span th:text="${job.name}"></span></td></tr>
+        <tr><td>Employer: <span th:text="${job.employer}"></span></td></tr>
+        <tr><td>Position Type: <span th:text="${job.positionType}"></span></td></tr>
+        <tr><td>Core Competency: <span th:text="${job.coreCompetency}"></span></td></tr>
     </table>
         <hr />
     </th:block>
